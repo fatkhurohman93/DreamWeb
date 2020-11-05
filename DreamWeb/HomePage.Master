@@ -1,0 +1,522 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="HomePage.master.cs" Inherits="DreamWeb.HomePage" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="./css/sidebarNavigation.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="./js/sidebarNavigation.js"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <title></title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('dropdown-toggle').dropdown()
+            });
+        </script>
+        <style type="text/css">
+            .flex-between {
+                justify-content: space-between;
+            }
+
+            .imgbtnstyle {
+                margin-left: 10px;
+                margin-right: 20px;
+            }
+
+            .btnstyle {
+                margin: 20px;
+            }
+
+            .btncondok {
+                border: 2px solid;
+                -moz-border-radius: 10px;
+                -webkit-border-radius: 10px;
+                border-radius: 10px;
+                font-family: 'Century Schoolbook';
+                font-size: medium;
+                background-color: lightgrey;
+                border-color: lightgrey;
+            }
+            
+            .lblket {
+            font-family: 'Century Schoolbook';
+            font-size: small;
+            font-style: italic;
+        }
+        </style>
+
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <div class="navbar navbar-inverse navbar-fixed-top sidebarNavigation" style="background-color: navy"
+                    data-sidebarclass="navbar-inverse">
+
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+
+                            <div class="flex-between">
+                                <button type="button" class="navbar-toggle left-navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="SalesTypePage.aspx">
+                                    <img runat="server" alt="" src="./images/Logo.png" width="100" height="30" />
+                                </a>
+
+                                <div class="navbar-brand navbar-right" style="margin-left: 30px; margin-right: 20px;">
+                                    <a style="margin-right: 10px">
+                                        <asp:ImageButton runat="server" ID="btnAcc" ImageUrl="./images/usericonwhite.png" Width="25" Height="25" OnClick="btnAcc_Click" />
+                                    </a>
+                                    <a style="margin-left: 10px; font-size: 12px; color: white;">
+
+                                        <asp:ImageButton ID="btnBasket" runat="server" ImageUrl="./images/iconbasket.png" Width="25" Height="25" OnClick="btnBasket_Click" />
+                                        <asp:Label runat="server" Text="0" ID="lblQty"></asp:Label>
+
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="myNavbar" style="background-color: navy; border-top: 1px solid transparent; box-shadow: inset 0 2px 0 rgba(255,255,255,0.1);">
+                            <ul class="nav navbar-nav navbar-right" style="font-family: 'Century Schoolbook'; font-size: medium">
+                                <li>
+                                    <div runat="server" style="border: 1px solid; border-radius: 15px; background-color: white; padding: 10px; width: auto; margin-right: 10px;">
+                                        <asp:TextBox runat="server" ID="txtSearch" placeholder="Search" BorderStyle="None" Width="85%"></asp:TextBox>
+                                        <asp:ImageButton runat="server" ID="btnSearch" ImageUrl="./images/iconsearch.png" Width="15" Height="15" OnClick="btnSearch_Click" />
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav">
+                                <li><a href="HomePage.aspx" style="font-family: 'Century Schoolbook'; font-size: medium">Home</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-family: 'Century Schoolbook'; font-size: medium">Products <b class="caret"></b></a>
+                                    <ul class="dropdown-menu" id="tabs" runat="server" role="menu" style="font-family: 'Century Schoolbook'; font-size: small">
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-family: 'Century Schoolbook'; font-size: medium">Promotion&Rewards <b class="caret"></b></a>
+                                    <ul class="dropdown-menu" role="menu" style="font-family: 'Century Schoolbook'; font-size: medium">
+                                        <li><a href="#">Promotion1</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Rewards</a></li>
+                                        <li><a href="#">Rewards2</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-family: 'Century Schoolbook'; font-size: medium">Delivery <b class="caret"></b></a>
+                                    <ul class="dropdown-menu" id="delTabs" runat="server" role="menu" style="font-family: 'Century Schoolbook'; font-size: medium">
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-family: 'Century Schoolbook'; font-size: medium">Contact Us <b class="caret"></b></a>
+                                    <ul class="dropdown-menu" role="menu" style="font-family: 'Century Schoolbook'; font-size: medium">
+                                        <li><a href="#">Email</a></li>
+                                        <li><a href="#">WhatsApp</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-family: 'Century Schoolbook'; font-size: medium">Social<b class="caret"></b></a>
+                                    <ul class="dropdown-menu" role="menu" style="font-family: 'Century Schoolbook'; font-size: medium">
+                                        <li><a href="#">Facebook</a></li>
+                                        <li><a href="#">Twitter</a></li>
+                                        <li><a href="#">Instagram</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <link href="css/dreamstyle.css" rel="stylesheet" />
+                <asp:HiddenField ID="hiddenField" runat="server" />
+                <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender_MyCart" runat="server"
+                    TargetControlID="hiddenField"
+                    PopupControlID="PanelPopup_MyCart"
+                    BackgroundCssClass="popup-background"
+                    CancelControlID="btnClose_MyCart"
+                    DropShadow="true">
+                </ajaxToolkit:ModalPopupExtender>
+                <asp:Panel runat="server" ID="PanelPopup_MyCart" CssClass="popup-body">
+
+                    <asp:Panel runat="server" HorizontalAlign="Center">
+
+                        <asp:Label ID="Label1" runat="server" Text="Cart" CssClass="namestyle" ></asp:Label>
+                    </asp:Panel>
+                    <br />
+                    <div style="float: left;" runat="server">
+                        <asp:ListView runat="server" ID="lvwOrder" GroupPlaceholderID="groupPlaceholder2" ItemPlaceholderID="itemPlaceholder2">
+                            <LayoutTemplate>
+                                <table>
+                                    <tr id="groupPlaceholder2" runat="server"></tr>
+                                    <tr id="itemPlaceholder2" runat="server"></tr>
+                                </table>
+                            </LayoutTemplate>
+                            <ItemTemplate>
+                                <div runat="server" style="float: left;">
+                                        <asp:Image ImageUrl='<%# Eval("TransID", "ImageCSharp.aspx?name=itemmaster&id={0}")%>' Height="50px" Width="50px" runat="server" />
+                                        <asp:Label ID="lblQty" runat="server" CssClass="labelStyle"><%# Eval("Qty_ToString") %></asp:Label>
+                                        <asp:Label ID="lblTransName" runat="server" CssClass="labelStyle"><%# Eval("TransName") %></asp:Label>
+                                        <asp:Label ID="lblUPrice" runat="server" CssClass="labelStyle"><%# Eval("UnitPrice_ToString") %></asp:Label>
+                                        <asp:Label ID="lblTotal" runat="server" CssClass="labelStyle"><%# Eval("TotalPrice_ToString") %></asp:Label>
+                                        <asp:LinkButton ID="linkItem" runat="server" Text="edit" OnClick="EditItem_Click" CommandArgument='<%# Eval("TempID") %>'></asp:LinkButton>
+                                       <hr />
+                                </div>
+                            </ItemTemplate>
+                        </asp:ListView>
+                    </div>
+                    <br />
+                    <br />
+                    <asp:Panel runat="server" HorizontalAlign="Right">
+                        <asp:Button ID="btnClose_MyCart" runat="server" Text="Close" CssClass="btnstyle" />
+                        <asp:Button ID="btnCart" runat="server" Text="View Cart" OnClick="btnCart_Click" CssClass="btnstyle" />
+                    </asp:Panel>
+                </asp:Panel>
+
+
+                <asp:HiddenField ID="hiddenField1" runat="server" />
+                <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender_OrderItem" runat="server"
+                    TargetControlID="hiddenField1"
+                    PopupControlID="PanelPopup_OrderItem"
+                    BackgroundCssClass="popup-background"
+                    DropShadow="true">
+                </ajaxToolkit:ModalPopupExtender>
+                <asp:Panel runat="server" ID="PanelPopup_OrderItem" CssClass="popup-body">
+
+                    <asp:Panel runat="server" HorizontalAlign="Center" Height="250px">
+                        <asp:Image ID="imgItem" Height="200px" Width="100%" runat="server" />
+                        <br />
+                        <asp:Label ID="lblName" runat="server" CssClass="namestyle"></asp:Label>
+                        <br />
+                        <asp:Panel runat="server" ID="pnlCondItem" HorizontalAlign="Center" BorderStyle="Ridge" BorderWidth="2px">
+                            <asp:Label ID="lblCondItem" runat="server" Font-Names="Century Schoolbook" Font-Italic="true" Font-Size="Small"></asp:Label>
+                        </asp:Panel>
+                        <br />
+                        <table>
+                            <tr>
+                                <td>
+                                    <asp:Label ID="LabelPrice" runat="server" CssClass="labelStyle" Text="Unit Price: "></asp:Label>
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblPrice" runat="server" CssClass="labelStyle"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:Label ID="LabelTotal" runat="server" CssClass="labelStyle" Text="Total: "></asp:Label>
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblTotal" runat="server" CssClass="labelStyle"></asp:Label>
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+                        <asp:Panel runat="server" ID="popup_pnlQty" HorizontalAlign="Center" Height="30px">
+                            <asp:Button runat="server" Text="-" ID="popup_btnMinus" CommandName="minus" OnClick="popup_btnPlusMinus_Click" />
+                            <asp:TextBox ID="popup_txtQty" runat="server" Style="text-align: center"></asp:TextBox>
+                            <asp:Button runat="server" Text="+" ID="popup_btnPlus" CommandName="plus" OnClick="popup_btnPlusMinus_Click" />
+                        </asp:Panel>
+                        <br />
+                        <div style="float: left" runat="server">
+                            <asp:GridView ID="grd" runat="server" AutoGenerateColumns="false" OnRowDataBound="grd_RowDataBound">
+                                <Columns>
+                                    <asp:TemplateField ItemStyle-Width="50px" HeaderText="Qty" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblQty1" runat="server"
+                                                Text='<%#Eval("Qty_ToString")%>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField ItemStyle-Width="300px" HeaderText="ItemName" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblName1" runat="server" Text='<%#Eval("TransName")%>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField ItemStyle-Width="100px" HeaderText="Additional" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblTotal1" runat="server" Text='<%#Eval("TotalPrice_ToString_OmitZero")%>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+                        <br />
+                        <asp:Label ID="lblMessage_OrderItem" runat="server" CssClass="labelMessage"></asp:Label>
+                        <br />
+                        <asp:Panel runat="server" HorizontalAlign="Right">
+                            <asp:Button runat="server" Text="Choose Options" ID="btnItemDetail" OnClick="btnItemDetail_Click" CssClass="btnstyle" />
+                            <asp:Button runat="server" Text="Condiments" ID="btnCondiment" OnClick="btnCondiment_Click" CssClass="btnstyle" />
+                            <asp:Button runat="server" Text="OK" ID="btnOK" OnClick="btnOK_OrderItem_Click" CssClass="btnstyle" />
+                        </asp:Panel>
+                        <br />
+                    </asp:Panel>
+
+                </asp:Panel>
+
+
+                <asp:HiddenField ID="hiddenField2" runat="server" />
+                <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender_ListDetail" runat="server"
+                    TargetControlID="hiddenField2"
+                    PopupControlID="PanelPopup_ListDetail"
+                    BackgroundCssClass="popup-background"
+                    DropShadow="true">
+                </ajaxToolkit:ModalPopupExtender>
+                <asp:Panel runat="server" ID="PanelPopup_ListDetail" CssClass="popup-body">
+                    <asp:Panel runat="server" HorizontalAlign="Center">
+                        <asp:Panel runat="server" HorizontalAlign="Center">
+                            <asp:Label ID="lblMasterName" runat="server" Text="item name" CssClass="labelStyle"></asp:Label>
+                            <asp:Label ID="lblMasterQty" runat="server" CssClass="namestyle"></asp:Label>
+                        </asp:Panel>
+                        <br />
+                        <asp:Label ID="lblMessage_ListDetail" runat="server" CssClass="labelMessage"></asp:Label>
+                        <br />
+                        <br />
+                        <div style="float: left" runat="server">
+                            <asp:ListView runat="server" ID="lvwItemDetail" GroupPlaceholderID="groupPlaceholder2" ItemPlaceholderID="itemPlaceholder2" OnItemCommand="lvwItemDetail_ItemCommand">
+                                <LayoutTemplate>
+                                    <table>
+                                        <tr id="groupPlaceholder2" runat="server"></tr>
+                                        <tr id="itemPlaceholder2" runat="server"></tr>
+                                    </table>
+                                </LayoutTemplate>
+                                <ItemTemplate>
+                                    <div runat="server" style="float: left" cssclass="itemlistsimple">
+                                        <asp:HiddenField runat="server" ID="hf_ID" Value='<%# Eval("ID")%>' />
+                                        <asp:HiddenField runat="server" ID="hf_DetailID" Value='<%# Eval("DetailID")%>' />
+                                        <asp:Panel runat="server">
+                                            <asp:Image ImageUrl='<%# Eval("DetailID", "ImageCSharp.aspx?name=itemmaster&id={0}")%>' Height="50px" Width="50px" runat="server" />
+                                            <asp:Label ID="lblTransName" runat="server" CssClass="labelnameStyle" Width="125px"><%# Eval("ItemName") %></asp:Label>
+                                            <asp:Label ID="lblUPrice" runat="server" CssClass="labelpriceStyle" Width="100px">price: <%# Eval("UnitPrice_ToString") %></asp:Label>
+                                        </asp:Panel>
+                                        <asp:Panel runat="server" HorizontalAlign="Center">
+                                            <asp:Label ID="lblTotal" runat="server" CssClass="labelpriceStyle" Width="75px">total: <%# Eval("TotalPrice_ToString") %></asp:Label>
+                                            <asp:Button runat="server" Text="-" ID="popup_btnMinus_Detail" CommandName="minus" CssClass="btncondok" />
+                                            <asp:Label ID="lblQty_Detail" runat="server" CssClass="labelqtyStyle" CommandArgument='<%# Eval("ID") %>'
+                                                Width="25px" BorderStyle="Inset"><%# fn_GetOrderDetailQty(Eval("ID")) %></asp:Label>
+                                            <asp:Button runat="server" Text="+" ID="popup_btnPlus_Detail" CommandName="plus" CssClass="btncondok" />
+                                        </asp:Panel>
+                                        <hr style="border-color: gray" />
+                                    </div>
+
+                                </ItemTemplate>
+                            </asp:ListView>
+                        </div>
+                    </asp:Panel>
+
+                    <asp:Button ID="btnPrev" runat="server" Text="Prev" CommandName="prev" OnClick="btnPrevNext_Click" CssClass="btnstyle" />
+                    <asp:Button ID="btnNext" runat="server" Text="Next" CommandName="next" OnClick="btnPrevNext_Click" CssClass="btnstyle" />
+                    <asp:Button ID="btnOK_ListDetail" runat="server" Text="OK" CommandName="ok" OnClick="btnOK_ListDetail_Click" CssClass="btnstyle" />
+
+
+                </asp:Panel>
+
+
+                <asp:HiddenField ID="hiddenField3" runat="server" />
+                <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender_Condiment" runat="server"
+                    TargetControlID="hiddenField3"
+                    PopupControlID="PanelPopup_Condiment"
+                    BackgroundCssClass="popup-background"
+                    DropShadow="true">
+                </ajaxToolkit:ModalPopupExtender>
+                <asp:Panel runat="server" ID="PanelPopup_Condiment" CssClass="popup-body">
+                    <asp:Panel runat="server" HorizontalAlign="Center">
+                        <asp:Panel runat="server" HorizontalAlign="Center">
+                            <asp:Label ID="lblItemName" runat="server" CssClass="namestyle"></asp:Label>
+                            <div style="float: left" runat="server">
+                                <asp:ListView runat="server" ID="lvwItemCond" GroupPlaceholderID="groupPlaceholder2" ItemPlaceholderID="itemPlaceholder2" OnItemDataBound="lvwItemCond_ItemDataBound">
+                                    <LayoutTemplate>
+                                        <table>
+                                            <tr id="groupPlaceholder2" runat="server"></tr>
+                                            <tr id="itemPlaceholder2" runat="server"></tr>
+                                            <thead>
+                                                <tr style="border-bottom: 2px solid; border-bottom-color: lightgrey;">
+                                                    <th style="width: 600px; text-align: center; padding: 10px;" title="condiment">Condiments</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </LayoutTemplate>
+                                    <ItemTemplate>
+                                        <div runat="server" style="float: left" cssclass="itemlistsimple">
+                                            <tr style="border-bottom: 1px solid; border-bottom-color: lightgrey;">
+                                                <asp:HiddenField runat="server" ID="hf_CondObject" />
+                                                <asp:Label ID="Label2" runat="server" Text='<%#Eval("Name")%>' CssClass="labelCondiment"></asp:Label>
+                                                <asp:Label ID="Label3" runat="server" Text='<%#Eval("Price_ToString")%>'></asp:Label>
+                                                <asp:Button ID="btnDeleteItemCond" runat="server" Text="x" BorderStyle="None" Height="22px" CommandName="delete" 
+                                                    OnClick="btnDeleteItemCond_Click" CausesValidation="false" CommandArgument='<%# Eval("ID")%>' />
+                                            </tr>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:ListView>
+                            </div>
+                        </asp:Panel>
+                        <br />
+
+                        <asp:Label ID="lblMessage_Condiment" runat="server" CssClass="labelMessage"></asp:Label>
+                        <br />
+                        <div style="float: left" runat="server">
+                            <asp:ListView runat="server" ID="lvwCondGroup" GroupPlaceholderID="groupPlaceholder2" ItemPlaceholderID="itemPlaceholder2" OnItemDataBound="lvwCondGroup_ItemDataBound">
+                                <LayoutTemplate>
+                                    <table>
+                                        <tr id="groupPlaceholder2" runat="server"></tr>
+                                        <tr id="itemPlaceholder2" runat="server"></tr>
+                                    </table>
+                                </LayoutTemplate>
+                                <ItemTemplate>
+                                    <div runat="server" style="float: left" cssclass="itemlistsimple">
+                                        <asp:HiddenField runat="server" ID="hf_CGObject" />
+                                        <table>
+                                            <tr>
+                                                <td style="text-align: left">
+                                                    <asp:Label ID="lblCondGroupName" runat="server" CssClass="labellvtitle"><%# Eval("Name_wType") %></asp:Label>
+                                                    <hr style="border-color: gray" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <asp:ListView ID="lvwCondiment" runat="server" GroupPlaceholderID="groupPlaceholder2" ItemPlaceholderID="itemPlaceholder2" OnItemDataBound="lvwCondiment_ItemDataBound">
+                                                        <LayoutTemplate>
+                                                            <table>
+                                                                <tr id="groupPlaceholder2" runat="server"></tr>
+                                                                <tr id="itemPlaceholder2" runat="server"></tr>
+                                                            </table>
+                                                        </LayoutTemplate>
+                                                        <ItemTemplate>
+                                                            <div runat="server" style="float: left" cssclass="itemlistsimple">
+                                                                <asp:CheckBox runat="server" ID="chkCond" Checked="false" AutoPostBack="true"
+                                                                    OnCheckedChanged="chkCond_OnCheckedChanged" />
+                                                                <asp:HiddenField runat="server" ID="hf_CondObject" />
+                                                                <asp:Label ID="Label2" runat="server"
+                                                                    Text='<%#Eval("Name")%>' Width="150px" CssClass="labellv"></asp:Label>
+                                                                <asp:Label ID="Label3" runat="server"
+                                                                    Text='<%#Eval("Price_ToString")%>'></asp:Label>
+
+                                                                <br />
+                                                            </div>
+                                                        </ItemTemplate>
+                                                    </asp:ListView>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <br />
+                                    </div>
+                                </ItemTemplate>
+                            </asp:ListView>
+                        </div>
+                        <br />
+                        <div runat="server" style="float: right;">
+                            <asp:Button ID="btnOK_Condiment" runat="server" Text="OK" CommandName="ok" OnClick="btnOK_Condiment_Click" CssClass="btnstyle" />
+                        </div>
+
+                    </asp:Panel>
+                </asp:Panel>
+
+
+           <asp:HiddenField ID="hiddenField4" runat="server" />
+            <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender_CategoryInfo" runat="server"
+                TargetControlID="hiddenField4"
+                PopupControlID="PanelPopup_CategoryInfo"
+                BackgroundCssClass="popup-background"
+                CancelControlID="btnCancel_CategoryInfo"
+                DropShadow="true">
+            </ajaxToolkit:ModalPopupExtender>
+            <asp:Panel runat="server" ID="PanelPopup_CategoryInfo" CssClass="popup-body" Height="400">
+                <asp:Panel runat="server" HorizontalAlign="Center" VerticalAlign="Center">
+                    <asp:Label ID="lblName_CategoryInfo" runat="server" CssClass="pricestyle"></asp:Label>
+                    <br />
+                    <br />
+                    <asp:Label ID="lblDate_CategoryInfo" runat="server" Text="Date of Function"></asp:Label>
+                    <br />
+                    <asp:Panel runat="server" ID="Panel1" HorizontalAlign="Center" Height="30px">
+                        <asp:TextBox runat="server" ID="txtDate_CategoryInfo" class="form-control" CssClass="txtStyle" placeholder="date" AutoCompleteType="Disabled" TextMode="Date"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txtTime_CategoryInfo" class="form-control" CssClass="txtStyle" placeholder="time" AutoCompleteType="Disabled" TextMode="Time"></asp:TextBox>
+                    </asp:Panel>
+                    <br />
+                    <br />
+                    
+                    <asp:Label ID="lblNoOfPax_CategoryInfo" runat="server" Text="Number of Pax"></asp:Label>
+                    <br />
+                    <asp:Panel runat="server" ID="Panel2" HorizontalAlign="Center" Height="30px">
+                        <asp:Button runat="server" Text="-" ID="Button1" CommandName="minus" OnClick="popup_CategoryInfo_btnPlusMinus_Click" />
+                        <asp:TextBox ID="txtQty_CategoryInfo" runat="server" Style="text-align: center"></asp:TextBox>
+                        <asp:Button runat="server" Text="+" ID="Button2" CommandName="plus" OnClick="popup_CategoryInfo_btnPlusMinus_Click" />
+                    </asp:Panel>
+                    
+                    <asp:Label ID="lblMinQty_CategoryInfo" runat="server" CssClass="lblket"></asp:Label>
+                    <br />
+                    <br />
+                </asp:Panel>
+                <br />
+                <asp:Panel runat="server" HorizontalAlign="Center">
+                    <asp:Button ID="btnCancel_CategoryInfo" runat="server" Text="Cancel" CssClass="btnusevoucher" />
+                    <asp:Button ID="btnOK_CategoryInfo" runat="server" Text="OK" CssClass="btnusevoucher" OnClick="btnOK_CategoryInfo_Clicked" />
+                </asp:Panel>
+            </asp:Panel>
+
+                 
+                <asp:UpdateProgress ID="UpdateProgress1" runat="server"
+                    AssociatedUpdatePanelID="UpdatePanel1">
+                    <ProgressTemplate>
+                        Please wait...  
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="HomePageBody" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+    <hr />
+
+           <div id="Footer">
+        <p>&copy; <%: DateTime.Now.Year %> - DreamWeb</p>
+    </div>
+</body>
+</html>

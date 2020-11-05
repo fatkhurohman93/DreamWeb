@@ -1,0 +1,589 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainPage.master.cs" Inherits="DreamWeb.MainPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>DreamWeb</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/dreamweb.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <link rel="stylesheet" href="css/nice-select.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/slicknav.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dreamstyle.css" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <!-- header-start -->
+                <header>
+                    <div class="header-area ">
+                        <div id="sticky-header" class="main-header-area">
+                            <div class="container-fluid p-0">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-xl-4 col-lg-4">
+                                        <div class="main-menu  d-none d-lg-block">
+                                            <nav>
+                                                <ul id="navigation">
+                                                    <li><a href="#"></a></li>
+                                                    <li><a href="#"></a></li>
+                                                    <li><a href="HomePage.aspx">About</a></li>
+                                                    <li><a href="contact.html">Contact</a></li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                                        <div class="logo-img">
+                                            <a href="MainMenu.aspx">
+                                                <img src="img/dreamweb.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 d-none d-lg-block">
+                                        <div class="book_room">
+                                            <div class="socail_links">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#" runat="server" onserverclick="btnAcc_Click">
+                                                            <img src="images/usericonwhite.png" width="25" height="25" alt="">
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" id="aBasket" runat="server" onserverclick="btnBasket_Click">
+                                                            <img src="images/iconbasket.png" width="25" height="25" alt="" runat="server" />
+                                                            <label id="lblBasketQty" style="font-weight: 600; font-size: medium; color: gray;" runat="server" />
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                            <div class="book_btn d-none d-xl-block">
+                                                <a class="#" href="#">+62 21 29078858</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mobile_menu d-block d-lg-none"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <!-- header-end -->
+
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="ModalLogin" role="dialog" data-backdrop="false">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 style="color: red;"><span class="glyphicon glyphicon-lock"></span>Login</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="usrname"><span class="glyphicon glyphicon-user"></span>Username</label>
+                                        <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="psw"><span class="glyphicon glyphicon-eye-open"></span>Password</label>
+                                        <input type="text" class="form-control" id="psw" placeholder="Enter password">
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="" checked>Remember me</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span>Login</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancel</button>
+                                <p>Not a member? <a href="#">Sign Up</a></p>
+                                <p>Forgot <a href="#">Password?</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal fade" id="ModalMyCart" role="dialog" data-backdrop="false">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <!--  <asp:UpdatePanel ID="UP_ModalMyCart" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate> -->
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <asp:ListView runat="server" ID="lvwModalMyCart" ItemPlaceholderID="itemPlaceholder2">
+                                    <LayoutTemplate>
+                                        <table>
+                                            <asp:PlaceHolder ID="itemPlaceholder2" runat="server" />
+                                        </table>
+                                    </LayoutTemplate>
+                                    <ItemTemplate>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <img src='<%# Eval("TransID", "images/itemmaster/{0}.jpg")%>' style="width: 100%; height: 75px;" />
+                                            </div>
+                                            <div class="col-1" style="text-align: right"><%# Eval("Qty_ToString") %></div>
+                                            <div class="col-4" style="text-align: left"><%# Eval("TransName") %></div>
+
+                                            <!--  <div class="col-1" style="text-align: right"><%# Eval("UnitPrice_ToString") %></div> -->
+
+                                            <div class="col-2" style="text-align: right"><%# Eval("TotalPrice_ToString") %></div>
+                                            <div class="col-1" style="text-align: left">
+                                                <asp:LinkButton runat="server" OnClick="EditItem_Click" CommandArgument='<%# Eval("TempID") %>'>
+                                                                 <img src="img/elements/edit20.jpg" style="width: 20px; height: 20px;"/>
+                                                </asp:LinkButton>
+                                            </div>
+                                            <hr />
+                                        </div>
+                                        <div class="row" style="height: 5px"></div>
+                                    </ItemTemplate>
+                                    <EmptyDataTemplate>
+                                        <div class="row text-center">
+                                            Your cart is empty.
+                                        </div>
+                                    </EmptyDataTemplate>
+                                </asp:ListView>
+                                <a href="MyCart.aspx" id="aModalMyCart" runat="server" class="button btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span>Checkout</a>
+                            </div>
+                            <div class="modal-footer">
+                                <!--  <button type="submit" class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancel</button> -->
+                            </div>
+                            <!--        </ContentTemplate>
+                            </asp:UpdatePanel> -->
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal fade" id="ModalOrderItem" role="dialog" data-backdrop="false">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <asp:UpdatePanel ID="UP_ModalOrderItem" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <div class="modal-header">
+                                        <div class="modal-title">
+                                            <h4 id="lblName" runat="server"></h4>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container col-md-12 text-center">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <img id="imgItem" src="blank.jpg" runat="server" />
+                                                </div>
+                                            </div>
+
+                                            <div class="row text-center font-italic">
+                                                <div class="col-12">
+                                                    <label id="lblCondItem" runat="server"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row text-center" style="font-size: larger;">
+                                                <div class="col-12">
+                                                    <label>Unit Price: </label>
+                                                    <label runat="server" id="lblPrice" />
+                                                </div>
+                                            </div>
+                                            <div class="row text-center" style="font-size: larger;">
+                                                <div class="col-12">
+                                                    <label>Total: </label>
+                                                    <label runat="server" id="lblTotal" />
+                                                </div>
+                                            </div>
+                                            <asp:Panel runat="server" ID="popup_pnlQty" HorizontalAlign="Center" Height="30px">
+                                                <asp:Button runat="server" Text="-" ID="popup_btnMinus" CommandName="minus" OnClick="popup_btnPlusMinus_Click" />
+                                                <asp:TextBox ID="popup_txtQty" runat="server" Style="text-align: center"></asp:TextBox>
+                                                <asp:Button runat="server" Text="+" ID="popup_btnPlus" CommandName="plus" OnClick="popup_btnPlusMinus_Click" />
+                                            </asp:Panel>
+                                            <br />
+                                            <div style="float: left" runat="server">
+                                                <asp:GridView ID="grd" runat="server" AutoGenerateColumns="false" OnRowDataBound="grd_RowDataBound">
+                                                    <Columns>
+                                                        <asp:TemplateField ItemStyle-Width="50px" HeaderText="Qty" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblQty1" runat="server"><%# GetOrderQty(Eval("ID")) %></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField ItemStyle-Width="300px" HeaderText="ItemName" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblName1" runat="server" Text='<%#Eval("TransName")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField ItemStyle-Width="100px" HeaderText="Additional" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblTotal1" runat="server" Text='<%#Eval("TotalPrice_ToString_OmitZero")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                            </div>
+                                            <br />
+                                            <asp:Label ID="lblMessage_OrderItem" runat="server" CssClass="labelMessage"></asp:Label>
+                                            <br />
+                                            <asp:Panel runat="server" HorizontalAlign="Right">
+                                                <asp:Button runat="server" Text="Choose Options" ID="btnItemDetail" OnClick="btnItemDetail_Click" CssClass="btnstyle" />
+                                                <asp:Button runat="server" Text="Condiments" ID="btnCondiment" OnClick="btnCondiment_Click" CssClass="btnstyle" />
+                                                <asp:Button runat="server" Text="OK" ID="btnOK" OnClick="btnOK_OrderItem_Click" CssClass="btnstyle" />
+                                            </asp:Panel>
+                                            <div class="modal-footer">
+                                                <!--  <button type="submit" class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancel</button> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="modal fade" id="ModalListDetail" role="dialog" data-backdrop="false">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <asp:Button ID="btnOK_ListDetail" runat="server" Text="OK" CommandName="ok" OnClick="btnOK_ListDetail_Click" CssClass="btnstyle" />
+                            <asp:UpdatePanel ID="UP_ModalListDetail" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <div class="modal-header">
+                                        <div class="modal-title">
+                                            <h4 id="lblMasterName" runat="server"></h4>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label id="lblMasterQty" runat="server"></label>
+                                        <br />
+                                        <asp:ListView runat="server" ID="lvwModalListDetail" ItemPlaceholderID="itemPlaceholder3" OnItemCommand="lvwItemDetail_ItemCommand">
+                                            <LayoutTemplate>
+                                                <table>
+                                                    <asp:PlaceHolder ID="itemPlaceholder3" runat="server" />
+                                                </table>
+                                            </LayoutTemplate>
+                                            <ItemTemplate>
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <img src='<%# Eval("DetailID", "images/itemmaster/{0}.jpg")%>' style="width: 50px; height: 50px;" />
+                                                    </div>
+                                                    <div class="col-4" style="text-align: left"><%# Eval("ItemName") %></div>
+                                                    <div class="col-3" style="text-align: right"><%# Eval("UnitPrice_ToString") %></div>
+                                                    <div class="col-3" style="text-align: right">total: <%# Eval("TotalPrice_ToString") %></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-2"></div>
+                                                    <div class="col-4">
+                                                        <asp:LinkButton ID="popup_btnMinus_Detail" Text="-" CommandArgument='<%# Eval("ID") %>' CommandName="minus" runat="server" CssClass="buttonClass" />
+                                                        <asp:Label Width="30px" ID="lblQty_Detail" runat="server"><%# fn_GetOrderDetailQty(Eval("ID")) %></asp:Label>
+                                                        <asp:LinkButton Text="+" ID="popup_btnPlus_Detail" CommandName="plus" runat="server" CssClass="buttonClass" />
+                                                    </div>
+
+                                                </div>
+                                                <hr />
+                                                <div class="row" style="height: 5px"></div>
+                                            </ItemTemplate>
+                                        </asp:ListView>
+                                    </div>
+                                    <asp:Label ID="lblMessage_ListDetail" runat="server"></asp:Label>
+                                    <br />
+                                    <div class="modal-footer">
+                                        <asp:Button ID="btnPrev" runat="server" Text="Prev" CommandName="prev" OnClick="btnPrevNext_Click" CssClass="btnstyle" />
+                                        <asp:Button ID="btnNext" runat="server" Text="Next" CommandName="next" OnClick="btnPrevNext_Click" CssClass="btnstyle" />
+                                    </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal fade" id="ModalCondiment" role="dialog" data-backdrop="false" runat="server">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+
+                            <asp:UpdatePanel ID="UP_ModalCondiment" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <div class="modal-header">
+                                        <div class="modal-title">
+                                            <h4 id="lblItemName" runat="server" />
+                                        </div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container" style="float: left;">
+                                            <div class="row">
+                                                <asp:ListView runat="server" ID="lvwModalItemCond" OnItemDataBound="lvwModalItemCond_ItemDataBound">
+                                                    <ItemTemplate>
+                                                        <div class="row">
+                                                            <asp:HiddenField runat="server" ID="hf_CondObject" />
+                                                            <div style="padding-right: 5em;">
+                                                                <label><%#Eval("Name")%> <%#Eval("Price_ToString")%></label>
+                                                                <button class="btn btn-default" runat="server" onserverclick="btnDeleteItemCond_Click">&times;</button>
+
+                                                            </div>
+                                                        </div>
+                                                    </ItemTemplate>
+                                                </asp:ListView>
+                                            </div>
+                                        </div>
+
+
+                                        <asp:Label ID="lblMessage_Condiment" runat="server" CssClass="labelMessage"></asp:Label>
+                                        <br />
+                                        <div>
+                                            <asp:ListView runat="server" Style="float: left;" ID="lvwModalCondGroup" OnItemDataBound="lvwModalCondGroup_ItemDataBound">
+                                                <ItemTemplate>
+                                                    <div class="row">
+                                                        <asp:HiddenField runat="server" ID="hf_CGObject" />
+                                                        <h3><%# Eval("Name_wType") %></h3>
+                                                        <hr />
+                                                        <br />
+
+                                                        <div class="row">
+                                                            <asp:ListView ID="lvwCondiment" runat="server" OnItemDataBound="lvwCondiment_ItemDataBound">
+                                                                <ItemTemplate>
+                                                                    <div class="col-md-6">
+                                                                        <asp:HiddenField runat="server" ID="hf_CondObject" />
+                                                                        <a>
+                                                                            <asp:CheckBox runat="server" ID="chkCond" OnCheckedChanged="chkCond_OnCheckedChanged" AutoPostBack="true" Checked="false" CausesValidation="false" />
+                                                                            <%#Eval("Name")%> <%#Eval("Price_ToString")%>
+                                                                        </a>
+                                                                    </div>
+                                                                </ItemTemplate>
+                                                            </asp:ListView>
+                                                        </div>
+                                                        <hr />
+                                                    </div>
+                                                </ItemTemplate>
+                                            </asp:ListView>
+                                        </div>
+                                    </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                            <button class="btn-block btn-default" runat="server" onserverclick="btnOK_Condiment_Click">OK</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal fade" id="ModalCategoryInfo" role="dialog" data-backdrop="false">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <asp:UpdatePanel ID="UP_ModalCategoryInfo" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container col-md-12 text-center">
+                                            <div class="row text-center" style="font-size: larger;">
+                                                <div class="col-12">
+                                                    <label id="lblName_CategoryInfo" runat="server"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row text-left font-italic">
+                                                <div class="col-12">
+                                                    <label id="lblDate_CategoryInfo" runat="server"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row text-center" style="font-size: larger;">
+                                                <div class="col-6">
+                                                    <asp:TextBox runat="server" ID="txtDate_CategoryInfo" class="form-control" CssClass="txtStyle" placeholder="date" AutoCompleteType="Disabled" TextMode="Date"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                            <div class="row text-center" style="font-size: larger;">
+                                                <div class="col-6">
+                                                    <asp:TextBox runat="server" ID="txtTime_CategoryInfo" class="form-control" CssClass="txtStyle" placeholder="time" AutoCompleteType="Disabled" TextMode="Time"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                            <asp:Label ID="lblNoOfPax_CategoryInfo" runat="server" Text="Number of Pax"></asp:Label>
+                                            <br />
+                                            <asp:Panel runat="server" ID="Panel2" HorizontalAlign="Center" Height="30px">
+                                                <asp:Button runat="server" Text="-" ID="Button1" CommandName="minus" OnClick="popup_CategoryInfo_btnPlusMinus_Click" />
+                                                <asp:TextBox ID="txtQty_CategoryInfo" runat="server" Style="text-align: center"></asp:TextBox>
+                                                <asp:Button runat="server" Text="+" ID="Button2" CommandName="plus" OnClick="popup_CategoryInfo_btnPlusMinus_Click" />
+                                            </asp:Panel>
+
+                                            <asp:Label ID="lblMinQty_CategoryInfo" runat="server" CssClass="lblket"></asp:Label>
+                                            <br />
+                                            <br />
+                                            <asp:Panel runat="server" HorizontalAlign="Center">
+                                                <asp:Button ID="btnCancel_CategoryInfo" runat="server" Text="Cancel" CssClass="btnusevoucher" />
+                                                <asp:Button ID="btnOK_CategoryInfo" runat="server" Text="OK" CssClass="btnusevoucher" OnClick="btnOK_CategoryInfo_Clicked" />
+                                            </asp:Panel>
+                                        </div>
+                                    </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Modal -->
+                <div id="ModalMessageBox" class="modal fade" role="dialog" data-backdrop="false">
+                    <div class="container d-flex justify-content-center">
+                        <div class="col-md-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5 class="title" id="h5title" runat="server"></h5>
+                                    <p class="description" id="pDesc" runat="server" />
+                                    <button type="button" class="close" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container body-content">
+                    <asp:ContentPlaceHolder ID="body" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+
+                <asp:UpdateProgress ID="UpdateProgress1" runat="server"
+                    AssociatedUpdatePanelID="UpdatePanel1">
+                    <ProgressTemplate>
+                        Please wait...  
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
+
+
+    </form>
+
+    <!-- footer_start  -->
+    <footer class="footer">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-md-6 col-lg-6">
+                        <div class="footer_widget text-center ">
+                            <h3 class="footer_title pos_margin">Indonesia
+                            </h3>
+                            <p>
+                                Komplek Gading Bukit Indah Blok SB-1
+                                <br>
+                                Jl. Bukit Gading Raya 
+                                <br>
+                                Jakarta 14240 
+                                <br>
+                                <a href="#">marketing@pcl.co.id</a>
+                            </p>
+                            <a class="number" href="#">+62 21 29078858</a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-md-6 col-lg-6">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">Stay Connected
+                            </h3>
+                            <form action="#" class="newsletter_form">
+                                <input type="text" placeholder="Enter your mail">
+                                <button type="submit">Sign Up</button>
+                            </form>
+                            <p class="newsletter_text">Stay connect with us to get exclusive offer!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-4">
+                        <div class="socail_links text-center">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="ti-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ti-twitter-alt"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ti-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-google-plus"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <!-- footer_end  -->
+
+</body>
+
+<!-- JS here -->
+<script src="js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="js/vendor/jquery-1.12.4.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/isotope.pkgd.min.js"></script>
+<script src="js/ajax-form.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/jquery.counterup.min.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/scrollIt.js"></script>
+<script src="js/jquery.scrollUp.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/nice-select.min.js"></script>
+<script src="js/jquery.slicknav.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/plugins.js"></script>
+
+<!--contact js-->
+<script src="js/contact.js"></script>
+<script src="js/jquery.ajaxchimp.min.js"></script>
+<script src="js/jquery.form.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/mail-script.js"></script>
+<script src="js/main.js"></script>
+
+
+</html>
