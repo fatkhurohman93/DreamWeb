@@ -1,0 +1,98 @@
+﻿body {
+    
+}
+
+
+
+.labellvtitle {
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+
+.labelCondiment {
+    color: black;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 3px;
+}
+
+
+.itemlistsimple {
+    border: 1px solid;
+    float: left;
+    padding: 5px;
+    margin: 10px;
+    box-shadow: 5px 10px #888888;
+}
+
+.namestyle {
+    color: #006600;
+    font-size: 26px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.labelMessage {
+    color: red;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 10px;
+    font-family: 'Century Schoolbook';
+}
+
+.titlestyle {
+    background-color: #E5E5FE;
+    margin: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center
+}
+
+.buttonClass {
+    padding: 2px 20px;
+    text-decoration: none;
+    border: solid 1px Green;
+    background-color: #ababab;
+}
+
+    .buttonClass:hover {
+        border: solid 1px Black;
+        background-color: #ffffff;
+    }
+
+
+.textboxStyle {
+    margin: 5px;
+    width: 50%;
+    height: 35px;
+    font-size: medium;
+    font-family: 'Century Schoolbook';
+}
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+    .btn-default:focus {
+        color: #333;
+        background-color: #e6e6e6;
+        border-color: #8c8c8c;
+    }
+
+    .btn-default:hover {
+        color: #333;
+        background-color: #e6e6e6;
+        border-color: #adadad;
+    }
+
+    .btn-default:active {
+        color: #333;
+        background-color: #e6e6e6;
+        border-color: #adadad;
+    }
+
